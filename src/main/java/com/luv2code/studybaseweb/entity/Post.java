@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -84,5 +85,12 @@ public class Post {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
-    private PostSection postSection;
+    private List<PostSection> postSection;
+
+    @OneToMany(
+            mappedBy = "post",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private List<Comment> comment;
 }
