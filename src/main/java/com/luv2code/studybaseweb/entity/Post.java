@@ -28,6 +28,9 @@ public class Post {
     @Column(name = "poster_image")
     private String poster_image;
 
+    @Column(name = "status")
+    private PostStatus status;
+
     @Column(name = "like")
     private int like;
 
@@ -63,4 +66,23 @@ public class Post {
     )
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne(
+            cascade =
+                    {
+                            CascadeType.DETACH,
+                            CascadeType.MERGE,
+                            CascadeType.PERSIST,
+                            CascadeType.REFRESH
+                    }
+    )
+    @JoinColumn(name = "subcategory_id")
+    private Subcategory subcategory;
+
+    @OneToMany(
+            mappedBy = "post",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private PostSection postSection;
 }

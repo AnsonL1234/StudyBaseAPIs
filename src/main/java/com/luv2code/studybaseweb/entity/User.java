@@ -39,6 +39,10 @@ public class User {
     @JoinColumn(name = "user_detail_id")
     private UserDetail userDetail;
 
-    @OneToMany
+    @OneToMany(
+            mappedBy = "author",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
     private List<Post> post;
 }

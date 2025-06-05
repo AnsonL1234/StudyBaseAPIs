@@ -34,4 +34,17 @@ public class Category {
                     }
     )
     private List<Subcategory> subcategory;
+
+    @OneToMany(
+            mappedBy = "category",
+            fetch = FetchType.LAZY,
+            cascade =
+                    {
+                            CascadeType.DETACH,
+                            CascadeType.MERGE,
+                            CascadeType.PERSIST,
+                            CascadeType.REFRESH
+                    }
+    )
+    private List<Post> post;
 }
