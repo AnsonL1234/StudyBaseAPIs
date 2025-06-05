@@ -4,7 +4,7 @@ import com.luv2code.studybaseweb.entity.enums.FriendStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -24,7 +24,7 @@ public class Friend {
     private FriendStatus status;
 
     @Column(name = "request_at")
-    private Timestamp request_at;
+    private LocalDateTime request_at;
 
     @ManyToOne(
             cascade =

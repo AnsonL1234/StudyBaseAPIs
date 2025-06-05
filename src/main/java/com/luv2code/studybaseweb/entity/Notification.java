@@ -4,7 +4,7 @@ import com.luv2code.studybaseweb.entity.enums.NotificationStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -27,7 +27,7 @@ public class Notification {
     private NotificationStatus notificationStatus;
 
     @Column(name = "create_at")
-    private Timestamp create_at;
+    private LocalDateTime create_at;
 
     @ManyToOne(
             cascade = {

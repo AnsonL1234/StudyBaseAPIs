@@ -4,7 +4,7 @@ import com.luv2code.studybaseweb.entity.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -31,10 +31,10 @@ public class User {
     private UserStatus userStatus;
 
     @Column(name = "create_at")
-    private Timestamp create_at;
+    private LocalDateTime create_at;
 
     @Column(name = "updated_at")
-    private Timestamp updated_at;
+    private LocalDateTime updated_at;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_detail_id")
