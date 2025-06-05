@@ -1,5 +1,6 @@
 package com.luv2code.studybaseweb.entity;
 
+import com.luv2code.studybaseweb.entity.enums.RoleUser;
 import jakarta.persistence.*;
 import lombok.*;
 

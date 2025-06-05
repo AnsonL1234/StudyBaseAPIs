@@ -1,5 +1,6 @@
 package com.luv2code.studybaseweb.entity;
 
+import com.luv2code.studybaseweb.entity.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -52,4 +53,10 @@ public class User {
             cascade = CascadeType.ALL
     )
     private List<Comment> comment;
+
+    @OneToMany(mappedBy = "user")
+    private List<Friend> sentFriendRequests;
+
+    @OneToMany(mappedBy = "friend")
+    private List<Friend> receiveFriendRequest;
 }
