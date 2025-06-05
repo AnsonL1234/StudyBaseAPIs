@@ -59,4 +59,10 @@ public class User {
 
     @OneToMany(mappedBy = "friend")
     private List<Friend> receiveFriendRequest;
+
+    @OneToMany(mappedBy = "sender")
+    private List<Notification> sendNotification;
+
+    @OneToMany(mappedBy = "receiver")
+    private List<Notification> receiveNotification;
 }

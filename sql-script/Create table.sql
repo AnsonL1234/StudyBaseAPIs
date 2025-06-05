@@ -86,7 +86,7 @@ CREATE TABLE Friend (
 );
 
 CREATE TABLE Notification (
-	notification_id CHAR(36) PRIMARY KEY NOT NULL, 
+	notification_id int PRIMARY KEY NOT NULL, 
     sender_id CHAR(36) NOT NULL,
     receiver_id CHAR(36) NOT NULL,
     content TEXT NOT NULL,
