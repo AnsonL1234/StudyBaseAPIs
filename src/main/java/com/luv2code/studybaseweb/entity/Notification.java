@@ -1,6 +1,6 @@
 package com.luv2code.studybaseweb.entity;
 
-import com.luv2code.studybaseweb.entity.enums.NotificationStatus;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,7 +24,7 @@ public class Notification {
     private String content;
 
     @Column(name = "status")
-    private NotificationStatus notificationStatus;
+    private String notificationStatus;
 
     @Column(name = "create_at")
     private LocalDateTime create_at;
@@ -35,6 +35,7 @@ public class Notification {
             }
     )
     @JoinColumn(name = "sender_id", nullable = false)
+    @JsonManagedReference
     private User sender;
 
     @ManyToOne(
@@ -43,5 +44,6 @@ public class Notification {
             }
     )
     @JoinColumn(name = "receiver_id",nullable = false)
+    @JsonManagedReference
     private User receiver;
 }

@@ -1,5 +1,7 @@
 package com.luv2code.studybaseweb.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,7 +11,6 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Entity
 @Table(name = "userdetail")
 public class UserDetail {
@@ -40,5 +41,6 @@ public class UserDetail {
             CascadeType.PERSIST,
             CascadeType.REFRESH
     })
+    @JsonBackReference
     private User user;
 }

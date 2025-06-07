@@ -1,5 +1,6 @@
 package com.luv2code.studybaseweb.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,6 +36,7 @@ public class Comment {
                     }
     )
     @JoinColumn(name = "post_id")
+    @JsonManagedReference
     private Post post;
 
     @ManyToOne(
@@ -47,5 +49,6 @@ public class Comment {
                     }
     )
     @JoinColumn(name = "user_id")
+    @JsonManagedReference
     private User user;
 }

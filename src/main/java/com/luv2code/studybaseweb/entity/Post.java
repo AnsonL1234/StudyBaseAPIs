@@ -1,6 +1,8 @@
 package com.luv2code.studybaseweb.entity;
 
-import com.luv2code.studybaseweb.entity.enums.PostStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,9 +33,9 @@ public class Post {
     private String poster_image;
 
     @Column(name = "status")
-    private PostStatus status;
+    private String status;
 
-    @Column(name = "like")
+    @Column(name = "likes")
     private int like;
 
     @Column(name = "dislike")
@@ -55,6 +57,7 @@ public class Post {
                     }
     )
     @JoinColumn(name = "author_id")
+    @JsonManagedReference
     private User author;
 
     @ManyToOne(
@@ -67,6 +70,7 @@ public class Post {
                     }
     )
     @JoinColumn(name = "category_id")
+    @JsonManagedReference
     private Category category;
 
     @ManyToOne(
@@ -79,6 +83,7 @@ public class Post {
                     }
     )
     @JoinColumn(name = "subcategory_id")
+    @JsonManagedReference
     private Subcategory subcategory;
 
     @OneToMany(
@@ -86,6 +91,7 @@ public class Post {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
+    @JsonBackReference
     private List<PostSection> postSection;
 
     @OneToMany(
@@ -93,5 +99,6 @@ public class Post {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
+    @JsonBackReference
     private List<Comment> comment;
 }

@@ -1,6 +1,6 @@
 package com.luv2code.studybaseweb.entity;
 
-import com.luv2code.studybaseweb.entity.enums.FriendStatus;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,7 +21,7 @@ public class Friend {
     private Long id;
 
     @Column(name = "status")
-    private FriendStatus status;
+    private String status;
 
     @Column(name = "request_at")
     private LocalDateTime request_at;
@@ -34,6 +34,7 @@ public class Friend {
                     }
     )
     @JoinColumn(name = "user_id")
+    @JsonManagedReference
     private User user;
 
     @ManyToOne(
@@ -44,5 +45,6 @@ public class Friend {
                     }
     )
     @JoinColumn(name = "friend_id")
+    @JsonManagedReference
     private User friend;
 }

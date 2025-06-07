@@ -1,6 +1,6 @@
 package com.luv2code.studybaseweb.entity;
 
-import com.luv2code.studybaseweb.entity.enums.PostSectionType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +19,7 @@ public class PostSection {
     private int section_id;
 
     @Column(name = "type")
-    private PostSectionType type;
+    private String type;
 
     @Column(name = "content")
     private String content;
@@ -37,5 +37,6 @@ public class PostSection {
                     }
     )
     @JoinColumn(name = "post_id")
+    @JsonManagedReference
     private Post post;
 }

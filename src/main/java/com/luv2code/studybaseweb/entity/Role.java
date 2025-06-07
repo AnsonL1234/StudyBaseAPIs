@@ -1,6 +1,6 @@
 package com.luv2code.studybaseweb.entity;
 
-import com.luv2code.studybaseweb.entity.enums.RoleUser;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,7 +8,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Entity
 @Table(name = "role")
 public class Role {
@@ -19,6 +18,18 @@ public class Role {
     private int role_id;
 
     @Column(name = "role_name")
-    private RoleUser role_name;
+    private String role_name;
 
+    @ManyToOne(
+            cascade =
+                    {
+                            CascadeType.DETACH,
+                            CascadeType.MERGE,
+                            CascadeType.PERSIST,
+                            CascadeType.REFRESH
+                    }
+    )
+    @JoinColumn(name = "User_Id")
+    @JsonManagedReference
+    private User user;
 }

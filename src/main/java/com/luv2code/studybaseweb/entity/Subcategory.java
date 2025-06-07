@@ -1,5 +1,7 @@
 package com.luv2code.studybaseweb.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,6 +34,7 @@ public class Subcategory {
                     }
     )
     @JoinColumn(name = "category_id")
+    @JsonManagedReference
     private Category category;
 
     @OneToMany(
@@ -45,5 +48,6 @@ public class Subcategory {
                             CascadeType.REFRESH
                     }
     )
+    @JsonBackReference
     private List<Post> post;
 }

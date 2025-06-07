@@ -1,6 +1,9 @@
 package com.luv2code.studybaseweb.entity;
 
-import com.luv2code.studybaseweb.entity.enums.UserStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +14,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Entity
 @Table(name="user")
 public class User {
@@ -28,7 +30,7 @@ public class User {
     private String password;
 
     @Column(name = "status")
-    private UserStatus userStatus;
+    private String userStatus;
 
     @Column(name = "create_at")
     private LocalDateTime create_at;
@@ -38,13 +40,23 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_detail_id")
+    @JsonManagedReference
     private UserDetail userDetail;
+
+    @OneToMany(
+            mappedBy = "user",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    @JsonBackReference
+    private List<Role> role;
 
     @OneToMany(
             mappedBy = "author",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
+    @JsonBackReference
     private List<Post> post;
 
     @OneToMany(
@@ -52,17 +64,22 @@ public class User {
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
+    @JsonBackReference
     private List<Comment> comment;
 
     @OneToMany(mappedBy = "user")
+    @JsonBackReference
     private List<Friend> sentFriendRequests;
 
     @OneToMany(mappedBy = "friend")
+    @JsonBackReference
     private List<Friend> receiveFriendRequest;
 
     @OneToMany(mappedBy = "sender")
+    @JsonBackReference
     private List<Notification> sendNotification;
 
     @OneToMany(mappedBy = "receiver")
+    @JsonBackReference
     private List<Notification> receiveNotification;
 }
